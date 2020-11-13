@@ -122,6 +122,11 @@ def vis_keypoints(img, kps, kp_thresh=2, alpha=0.7):
         i2 = kp_lines[l][1]
         p1 = kps[0, i1], kps[1, i1]
         p2 = kps[0, i2], kps[1, i2]
+        print('l:', l)
+        print('i1:', i1)
+        print('i2:', i2)
+        print('p1:', p1)
+        print('p2:', p2)
         if kps[2, i1] > kp_thresh and kps[2, i2] > kp_thresh:
             cv2.line(
                 kp_mask, p1, p2,
@@ -131,10 +136,10 @@ def vis_keypoints(img, kps, kp_thresh=2, alpha=0.7):
                 kp_mask, p1,
                 radius=3, color=colors[l], thickness=-1, lineType=cv2.LINE_AA)
         if kps[2, i2] > kp_thresh:
-            pass
-            # cv2.circle(
-            #     kp_mask, p2,
-            #     radius=3, color=colors[l], thickness=-1, lineType=cv2.LINE_AA)
+            # pass
+            cv2.circle(
+                kp_mask, p2,
+                radius=3, color=colors[l], thickness=-1, lineType=cv2.LINE_AA)
 
     # Blend the keypoints.
     return cv2.addWeighted(img, 1.0 - alpha, kp_mask, alpha, 0)

@@ -5,6 +5,7 @@ from PIL import Image
 import torch.nn.functional as F
 from visualize_maskrcnn_predictions import vis_keypoints
 import numpy as np
+import cv2
 
 
 
@@ -24,7 +25,7 @@ transform = transforms.Compose([
 ])
 # %%
 
-img = Image.open('Images/pic.jpg')
+img = Image.open('Images/walking.jpg')
 #img.show()
 x = transform(img)
 
@@ -67,9 +68,20 @@ k[3, :] = keypoint.T[2, :]
 # keypoint = torch.cat((first_half, keypoint_score.unsqueeze(0), second_half))
 # keypoint = keypoint.numpy()
 
+
+k = k.numpy()
+
 print(k.shape)
 print(k)
 
+img = np.array(img) 
+# Convert RGB to BGR 
+img = img[:, :, ::-1].copy() 
 
-vis_keypoints(img, k )
+img = vis_keypoints(img, k )
+cv2.imshow('image',img)
+cv2.waitKey(0)# %%
+
+# %%
+
 # %%
