@@ -79,8 +79,11 @@ img = np.array(img)
 img = img[:, :, ::-1].copy() 
 
 img = vis_keypoints(img, k )
-cv2.imshow('image',img)
-cv2.waitKey(0)# %%
+
+img = cv2.cvtColor(img, cv2)
+img = Image.fromarray(img)
+
+img.show()
 
 # %%
 

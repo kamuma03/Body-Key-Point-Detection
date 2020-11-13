@@ -136,7 +136,6 @@ def vis_keypoints(img, kps, kp_thresh=2, alpha=0.7):
                 kp_mask, p1,
                 radius=3, color=colors[l], thickness=-1, lineType=cv2.LINE_AA)
         if kps[2, i2] > kp_thresh:
-            # pass
             cv2.circle(
                 kp_mask, p2,
                 radius=3, color=colors[l], thickness=-1, lineType=cv2.LINE_AA)
