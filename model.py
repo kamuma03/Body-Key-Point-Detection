@@ -10,7 +10,8 @@ import cv2
 
 
 #%%
-model= models.detection.keypointrcnn_resnet50_fpn(pretrained=True)
+model = models.detection.keypointrcnn_resnet50_fpn(pretrained=True)
+model.eval()
 
 ## model.eval()
 ## x = [torch.rand(3, 300, 400), torch.rand(3, 500, 400)]
@@ -20,6 +21,7 @@ model= models.detection.keypointrcnn_resnet50_fpn(pretrained=True)
 ## print(len(x))
 # %%
 transform = transforms.Compose([
+    # transforms.Resize(64),
     transforms.ToTensor(),
     transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
 ])
@@ -30,7 +32,8 @@ img = Image.open('Images/camel.jpg')
 img = Image.open('Images/baseball.jpg')
 img = Image.open('Images/baseball2.jpeg')
 img = Image.open('Images/harry.jpeg')
-img = Image.open('Images/white_bkgd.png').convert('RGB')
+img = Image.open('Images/peoples.png').convert('RGB')
+# img = Image.open('Images/white_bkgd.png').convert('RGB')
 #img.show()
 x = transform(img)
 
@@ -40,13 +43,9 @@ x = transform(img)
 x = x.view(1, *x.shape)
 
 print(x.shape)
-# z =[x, x]
 # %%
-model.eval()
 predictions = model(x)
 print(len(predictions[0]))
-predictions
-
 
 # %%
 keypoint = predictions[0]["keypoints"]
@@ -76,6 +75,7 @@ img = vis_keypoints(img, k)
 
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 img = Image.fromarray(img)
+img = img.convert('RGB')
 
 img.show()
 
