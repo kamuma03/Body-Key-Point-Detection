@@ -26,6 +26,11 @@ transform = transforms.Compose([
 # %%
 
 img = Image.open('Images/walking.jpg')
+img = Image.open('Images/camel.jpg')
+img = Image.open('Images/baseball.jpg')
+img = Image.open('Images/baseball2.jpeg')
+img = Image.open('Images/harry.jpeg')
+img = Image.open('Images/white_bkgd.png').convert('RGB')
 #img.show()
 x = transform(img)
 
@@ -56,32 +61,18 @@ keypoint_score = keypoint_score[0]
 
 k = torch.zeros(4, keypoint.shape[0])
 
+# FORMAT AS EXPECTED
 k[0:2, :] = keypoint.T[0:2, :]
 k[2, :] = keypoint_score
 k[3, :] = keypoint.T[2, :]
-
-# keypoint = keypoint.T
-# first_half = keypoint[0:2, :]
-# second_half = keypoint[2, :]
-# print(keypoint.shape)
-# print(keypoint_score.unsqueeze(0).shape)
-# keypoint = torch.cat((first_half, keypoint_score.unsqueeze(0), second_half))
-# keypoint = keypoint.numpy()
-
-
 k = k.numpy()
-
-print(k.shape)
-print(k)
-
-
 img = np.array(img) 
 # Convert RGB to BGR 
+
 img = img[:, :, ::-1].copy() 
 img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
-
-img = vis_keypoints(img, k )
+img = vis_keypoints(img, k)
 
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 img = Image.fromarray(img)
