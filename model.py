@@ -74,13 +74,16 @@ k = k.numpy()
 print(k.shape)
 print(k)
 
+
 img = np.array(img) 
 # Convert RGB to BGR 
 img = img[:, :, ::-1].copy() 
+img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+
 
 img = vis_keypoints(img, k )
 
-img = cv2.cvtColor(img, cv2)
+img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 img = Image.fromarray(img)
 
 img.show()
