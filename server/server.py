@@ -1,14 +1,31 @@
 from flask import Flask, request
-from utils import decode_img
+from utils import decode_img, encode_img
+from model import KeypointRCNN, visualise_keypoints
+import json
 
 app = Flask(__name__)
 
-@app.route('/')
+model = KeypointRCNN()
+
+
+@app.route('/', methods=['POST'])
 def root():
-    name = 'Harry'
+
+    print(request)
+    x = request.get_json()
+    img = x['input']
+    img = decode_img(img) 
+
+    predictions = model(img)
+    print(len(predictions[0]))
+
+    img = visualise_keypoints(img, predictions)
+
+    img = encode_img(img)
+
     return json.dumps({
         'statusCode': 200,
-        'response': 'hello world'
+        'response': img
     })
 
 @app.route('/predict', methods=['POST'])
@@ -16,7 +33,7 @@ def predict():
     print(request)
     x = request.get_json()
     img = x['input']
-    img = decode_img()
+    img = decode_img(img)
     return 'hello'
 
 if __name__ == '__main__':

@@ -3,14 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 
-
 def select_top_predictions(predictions, threshold):
     idx = (predictions["scores"] > threshold).nonzero().squeeze(1)
     new_predictions = {}
     for k, v in predictions.items():
         new_predictions[k] = v[idx]
     return new_predictions
-
 
 def compute_colors_for_labels(labels, palette=None):
     """
@@ -122,11 +120,11 @@ def vis_keypoints(img, kps, kp_thresh=2, alpha=0.7):
         i2 = kp_lines[l][1]
         p1 = kps[0, i1], kps[1, i1]
         p2 = kps[0, i2], kps[1, i2]
-        print('l:', l)
-        print('i1:', i1)
-        print('i2:', i2)
-        print('p1:', p1)
-        print('p2:', p2)
+        # print('l:', l)
+        # print('i1:', i1)
+        # print('i2:', i2)
+        # print('p1:', p1)
+        # print('p2:', p2)
         if kps[2, i1] > kp_thresh and kps[2, i2] > kp_thresh:
             cv2.line(
                 kp_mask, p1, p2,

@@ -3,22 +3,21 @@ from PIL import Image
 import json
 from io import BytesIO 
 import base64
+from utils import encode_img, decode_img
 
-# img = Image.open('beijing.jpeg')
-# buffer = BytesIO() # create buffer to read to
-# img.save(buffer, format='JPEG') # store image in buffer
-# img = base64.b64encode(buffer.getvalue()) # get value of buffer and encode as base64
-# img = img.decode('utf-8') # decode as utf-8
+host = '18.133.229.56'
+host = 'localhost'
 
-# img = base64.b64decode(img)
-# img = BytesIO(img)
-# img = Image.open(img)
-# img.show()
+img = Image.open('Images/walking.jpg')
+img = encode_img(img)
 
 s = {
-    'input': 'img'
+    'input': img
 }
-# r = requests.post('http://:5000/predict', data=json.dumps(s), headers={'content-type': 'application/json'})
-r = requests.get('http://35.178.210.245:5000/')
+r = requests.post(f'http://{host}:5000/', data=json.dumps(s), headers={'content-type': 'application/json'})
 
 print(r)
+print(r.json())
+r = r.json()
+img = decode_img(r['response'])
+img.show()
