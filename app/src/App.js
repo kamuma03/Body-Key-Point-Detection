@@ -1,6 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
 import { Button } from '@material-ui/core'
+import { jsx } from '@emotion/react'
+/** @jsx jsx */ 
+/** @jsxRuntime classic */
+/** @jsxFrag React.Fragment */
+import FileUpload from "./Upload"
+import { POST } from './utils'
+
+const onimgupload = (result) => {
+
+}
 
 function App() {
   return (
@@ -13,6 +23,7 @@ function App() {
         <Button variant='contained'>
           Yo
         </Button>
+        <FileUpload onload={onimgupload} />
         <a
           className="App-link"
           href="https://reactjs.org"
