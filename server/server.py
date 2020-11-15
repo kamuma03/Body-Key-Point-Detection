@@ -17,7 +17,7 @@ def root():
     img = x['input']
     
     # save file to compare what's sent by python and js
-    with open(f'encoded_imgs/{time()}.txt', 'w') as f:
+    with open(f'encoded_imgs/{time()}.txt', 'w+') as f:
         f.write(img)
 
     img = decode_img(img) 
