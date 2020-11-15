@@ -11,7 +11,7 @@ model = KeypointRCNN()
 @app.route('/', methods=['POST'])
 def root():
 
-    print(request)
+    print('the request:', request)
     x = request.get_json()
     img = x['input']
     img = decode_img(img) 
