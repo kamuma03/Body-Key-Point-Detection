@@ -23,7 +23,7 @@ def root():
 
     img = encode_img(img)
 
-    response = flask.resonse
+    response = flask.response
     response.headers["Access-Control-Allow-Origin"] = "*"
     return response
 
