@@ -5,8 +5,8 @@ from io import BytesIO
 import base64
 from utils import encode_img, decode_img
 
-host = '18.133.229.56'
-host = 'localhost'
+host = '18.133.254.35'
+# host = 'localhost'
 
 img = Image.open('Images/walking.jpg')
 img = encode_img(img)
