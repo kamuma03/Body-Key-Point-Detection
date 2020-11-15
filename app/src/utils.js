@@ -22,7 +22,7 @@ export const GET = async (resource, additional_params) => {
 export const POST = async (resource, body) => {
     const options = {
         method: 'POST',
-        mode: 'cors',
+        // mode: 'cors',
         body: JSON.stringify(body),
         headers: {
             'Content-Type': 'application/json',
