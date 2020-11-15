@@ -8,7 +8,7 @@ app = Flask(__name__)
 model = KeypointRCNN()
 
 
-@app.route('/', methods=['POST', 'OPTIONS'])
+@app.route('/', methods=['POST'])
 def root():
 
     print(request)
