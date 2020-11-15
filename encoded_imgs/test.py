@@ -20,3 +20,4 @@ print(b64[:10])
 image = Image.open(io.BytesIO(b64))
 image.show()
 
+

@@ -20,7 +20,8 @@ function App() {
     const payload = {
       input: b64
     }
-    POST('http://35.178.186.141:5000', payload)
+    // POST('http://35.178.186.141:5000', payload)
+    POST('http://18.133.254.35:5000', payload)
     //POST('http://localhost:5000', payload)
     .then(
       (r) => {
