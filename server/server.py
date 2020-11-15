@@ -2,6 +2,7 @@ from flask import Flask, request
 from utils import decode_img, encode_img
 from model import KeypointRCNN, visualise_keypoints
 import json
+from time import time
 
 app = Flask(__name__)
 
@@ -14,6 +15,11 @@ def root():
     print('the request:', request)
     x = request.get_json()
     img = x['input']
+    
+    # save file to compare what's sent by python and js
+    with open(f'encoded_imgs/{time()}.txt', 'w') as f:
+        f.write(img)
+
     img = decode_img(img) 
 
     predictions = model(img)
