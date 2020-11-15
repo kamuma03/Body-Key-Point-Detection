@@ -3,8 +3,9 @@ from io import BytesIO
 from PIL import Image
 
 def decode_img(img):
-    img = base64.b64decode(img)
+    img = base64.b64decode(img) # decode to base 64 bytes
     img = BytesIO(img)
+    # img = BytesIO(img)
     img = Image.open(img)
     return img
 

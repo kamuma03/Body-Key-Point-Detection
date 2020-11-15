@@ -4,9 +4,10 @@ import json
 from io import BytesIO 
 import base64
 from utils import encode_img, decode_img
+from time import time
 
 host = '18.133.254.35'
-# host = 'localhost'
+host = 'localhost'
 
 img = Image.open('Images/walking.jpg')
 img = encode_img(img)
@@ -14,6 +15,7 @@ img = encode_img(img)
 s = {
     'input': img
 }
+
 r = requests.post(f'http://{host}:5000/', data=json.dumps(s), headers={'content-type': 'application/json'})
 
 print(r)

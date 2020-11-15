@@ -1,4 +1,5 @@
 from flask import Flask, request
+import flask
 from utils import decode_img, encode_img
 from model import KeypointRCNN, visualise_keypoints
 import json
@@ -16,22 +17,13 @@ def root():
     x = request.get_json()
     img = x['input']
     
-    # save file to compare what's sent by python and js
-    with open(f'encoded_imgs/{time()}.txt', 'w+') as f:
-        f.write(img)
-
     img = decode_img(img) 
 
     predictions = model(img)
-    print(len(predictions[0]))
 
     img = visualise_keypoints(img, predictions)
 
     img = encode_img(img)
-
-    response = flask.response
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    return response
 
     return json.dumps({
         'statusCode': 200,
