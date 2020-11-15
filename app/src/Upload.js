@@ -30,7 +30,7 @@ const Upload = props => {
              reader.onload = ()=>{                 
                  setImgsrc(e.target.result)
                  console.log(reader.result)
-                 props.onload()
+                 props.onload(reader.result)
              }
                 //  filename: file.name
              reader.readAsDataURL(file);

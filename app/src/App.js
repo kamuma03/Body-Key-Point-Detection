@@ -8,7 +8,12 @@ import { jsx } from '@emotion/react'
 import FileUpload from "./Upload"
 import { POST } from './utils'
 
-const onimgupload = (result) => {
+const onimgupload = (b64) => {
+
+  const payload = {
+    input: b64
+  }
+  POST('http://18.133.254.35:5000', payload)
 
 }
 

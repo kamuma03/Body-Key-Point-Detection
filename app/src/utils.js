@@ -26,9 +26,11 @@ export const POST = async (resource, body) => {
         body: JSON.stringify(body),
         headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         },
     };
-    const url = API_ROOT + resource;
+    // const url = API_ROOT + resource;
+    const url = resource
     let response = await fetch(url, options);
     response = await response.json();
     //console.debug('response from', resource, ':', response);
