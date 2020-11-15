@@ -8,12 +8,11 @@ import { jsx } from '@emotion/react'
 import FileUpload from "./Upload"
 import { POST } from './utils'
 import { useState } from 'react';
-
-
+import placeholder from './image.png';
 
 function App() {
 
-  const [response, setResponse] = useState()
+  const [response, setResponse] = useState(placeholder)
 
   const onimgupload = (b64) => {
     b64 = b64.split(',')[1]
@@ -21,8 +20,8 @@ function App() {
     const payload = {
       input: b64
     }
-    // POST('http://18.133.254.35:5000', payload)
-    POST('http://localhost:5000', payload)
+    POST('http://35.178.186.141:5000', payload)
+    //POST('http://localhost:5000', payload)
     .then(
       (r) => {
         console.log(r)
@@ -33,26 +32,13 @@ function App() {
 
   return (
     <div className="App">
+      <div className="Title"> Body Keypoint Detection Using Keypoint R-CNN </div>
+      <div className="Description">The WebbApp detects the Body keypoint using Keypoint R-CNN upon uploading an image by the user</div>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
         {
-          response ? <img style={{height: '100px', width: '100px', backgroundColor: 'red'}} src={response} /> : null
+          response ? <img style={{height: '700px', width: '700px', backgroundColor: 'red'}} src={response} /> : null
         }
-        <Button variant='contained'>
-          Yo
-        </Button>
         <FileUpload onload={onimgupload} />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );

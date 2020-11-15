@@ -211,7 +211,7 @@ class FileUpload extends Component {
                             <div className="row">
                                 {this.props.title ?<p>{this.props.title}</p>:null }
                                 <label htmlFor="contained-button-file">
-                                    <Button variant="outlined" color="primary" component="span" endIcon={this.props.icon ? this.props.icon : <GetAppIcon style={{transform: 'rotateZ(180deg)'}}/>}>
+                                    <Button variant="contained" color="primary" component="span" endIcon={this.props.icon ? this.props.icon : <GetAppIcon style={{transform: 'rotateZ(180deg)'}}/>}>
                                         Upload
                                     </Button>
                                 </label>

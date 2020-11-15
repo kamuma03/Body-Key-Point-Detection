@@ -49,7 +49,7 @@ const Upload = props => {
         <div className="row">
             {props.title ?<p>{props.title}</p>:null }
             <label htmlFor="contained-button-file">
-                <Button variant="outlined" color="primary" component="span" endIcon={props.icon ? props.icon : <GetAppIcon style={{transform: 'rotateZ(180deg)'}}/>}>
+                <Button variant="contained" color="primary" component="span" endIcon={props.icon ? props.icon : <GetAppIcon style={{transform: 'rotateZ(180deg)'}}/>}>
                     Upload
                 </Button>
             </label>
