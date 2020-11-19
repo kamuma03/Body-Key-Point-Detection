@@ -17,6 +17,9 @@ ENTRYPOINT [ "python3", "__main__.py" ]
 EXPOSE 5000
 
 
+# to create the image : docker build --tag keypoint .
+# to run the docker image : docker run --publish 5000:5000 --name keypoint --detach --rm keypoint
+# to clear the docker images :  docker system prune
 
 # COPY . __main__.py
 # # COPY . ./requirements.txt
